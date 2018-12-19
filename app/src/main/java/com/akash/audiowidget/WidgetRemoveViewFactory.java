@@ -102,15 +102,8 @@ public class WidgetRemoveViewFactory implements RemoteViewsService.RemoteViewsFa
 
         AudioStreamType type = itemList.get(position);
 
-        RemoteViews remoteViews = new RemoteViews(context.getPackageName(), R.layout.list_item_voulume_cell);
-
-        remoteViews.setTextViewText(R.id.title, type.title);
-
-        remoteViews.setProgressBar(R.id.progress_bar, type.getMaxVolume(audioManager), type.getVolume(audioManager), false);
-
-        remoteViews.setOnClickPendingIntent(R.id.plus, getPendingSelfIntent(context, type.volumeUpString));
-
-        remoteViews.setOnClickPendingIntent(R.id.minus, getPendingSelfIntent(context, type.volumeDownString));
+        VolumeControllerRemoteViews remoteViews = new VolumeControllerRemoteViews(context);
+        remoteViews.setupView(context, type, audioManager);
 
         return remoteViews;
     }

@@ -276,6 +276,15 @@
 
     </LinearLayout>
 
+    <!--USED TO TEST CREATE CUSTOM VIEW-->
+    <LinearLayout android:id="@+id/add_more_view_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@+id/layout_bluetooth">
+
+    </LinearLayout>
+
     <ImageView
         android:id="@+id/refresh"
         android:layout_width="wrap_content"
