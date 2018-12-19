@@ -12,6 +12,11 @@ public class ListViewAudioWidget extends AppWidgetProvider {
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
         for (int appWidgetId : appWidgetIds) {
             RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.audio_list_widget);
+
+            Intent intent = new Intent(context, MyWidgetRemoteViewsService.class);
+            views.setRemoteAdapter(R.id.list_view, intent);
+
+            appWidgetManager.updateAppWidget(appWidgetId, views);
         }
     }
 
