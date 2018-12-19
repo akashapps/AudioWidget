@@ -103,7 +103,7 @@ public class AudioWidget extends AppWidgetProvider {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-
+        super.onReceive(context, intent);
         if (intent == null) {
             return;
         }
@@ -142,8 +142,7 @@ public class AudioWidget extends AppWidgetProvider {
                 setStreamVolumeDown(context, 6);
                 break;
             default:
-                super.onReceive(context, intent);
-                break;
+                return;
         }
 
         sendUpdate(context);
