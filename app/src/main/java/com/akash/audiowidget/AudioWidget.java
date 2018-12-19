@@ -1,8 +1,10 @@
 package com.akash.audiowidget;
 
+import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
 import android.content.Context;
+import android.content.Intent;
 import android.widget.RemoteViews;
 
 /**
@@ -10,7 +12,9 @@ import android.widget.RemoteViews;
  */
 public class AudioWidget extends AppWidgetProvider {
 
-    static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
+    private static final String TEXT_VIEW_CLICK = "TEXT_VIEW_CLICK";
+
+    void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
                                 int appWidgetId) {
 
         CharSequence widgetText = context.getString(R.string.appwidget_text);
@@ -18,8 +22,12 @@ public class AudioWidget extends AppWidgetProvider {
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.audio_widget);
         views.setTextViewText(R.id.appwidget_text, widgetText);
 
+
+        views.setOnClickPendingIntent(R.id.appwidget_text, getPendingSelfIntent(context, TEXT_VIEW_CLICK));
+
         // Instruct the widget manager to update the widget
         appWidgetManager.updateAppWidget(appWidgetId, views);
+
     }
 
     @Override
@@ -31,6 +39,21 @@ public class AudioWidget extends AppWidgetProvider {
     }
 
     @Override
+    public void onReceive(Context context, Intent intent) {
+
+        if (intent.getAction().equals(TEXT_VIEW_CLICK)){
+            textViewClick(context);
+        }
+
+        super.onReceive(context, intent);
+    }
+
+    private void textViewClick(Context context) {
+
+//        context.getSystemService()
+    }
+
+    @Override
     public void onEnabled(Context context) {
         // Enter relevant functionality for when the first widget is created
     }
@@ -38,6 +61,12 @@ public class AudioWidget extends AppWidgetProvider {
     @Override
     public void onDisabled(Context context) {
         // Enter relevant functionality for when the last widget is disabled
+    }
+
+    protected PendingIntent getPendingSelfIntent(Context context, String action) {
+        Intent intent = new Intent(context, getClass());
+        intent.setAction(action);
+        return PendingIntent.getBroadcast(context, 0, intent, 0);
     }
 }
 
