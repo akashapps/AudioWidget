@@ -19,6 +19,8 @@
             </intent-filter>
         </activity>
 
+
+
         <receiver android:name=".AudioWidget">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
