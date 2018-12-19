@@ -43,7 +43,7 @@ public class AudioWidget extends AppWidgetProvider {
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.audio_widget);
         views.setOnClickPendingIntent(R.id.refresh, getPendingSelfIntent(context, REFRESH_CLICK_ACTION));
 
-//        VolumeControllerRemoteViews customView = new VolumeControllerRemoteViews(context.getPackageName(), R.layout.list_item_volume_controller);
+//        VolumeControllerRemoteViews customView = new VolumeControllerRemoteViews(context);
 //        views.addView(R.id.add_more_view_layout, customView);
 
         updateRemoveViews(context, views);
