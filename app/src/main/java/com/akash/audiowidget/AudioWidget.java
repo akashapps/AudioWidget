@@ -15,8 +15,26 @@ import android.widget.RemoteViews;
 public class AudioWidget extends AppWidgetProvider {
 
     private static final String REFRESH_CLICK_ACTION = "REFRESH_CLICK_ACTION";
+
+    //music
     private static final String MUSIC_VOLUME_UP = "MUSIC_VOLUME_UP";
     private static final String MUSIC_VOLUME_DOWN = "MUSIC_VOLUME_DOWN";
+
+    //alarm
+    private static final String ALARM_VOLUME_UP = "ALARM_VOLUME_UP";
+    private static final String ALARM_VOLUME_DOWN = "ALARM_VOLUME_DOWN";
+
+    //ring
+    private static final String RING_VOLUME_UP = "RING_VOLUME_UP";
+    private static final String RING_VOLUME_DOWN = "RING_VOLUME_DOWN";
+
+    //notification
+    private static final String NOTIFICATION_VOLUME_UP = "NOTIFICATION_VOLUME_UP";
+    private static final String NOTIFICATION_VOLUME_DOWN = "NOTIFICATION_VOLUME_DOWN";
+
+    //Bluetooth
+    private static final String BLUETOOTH_VOLUME_UP = "BLUETOOTH_VOLUME_UP";
+    private static final String BLUETOOTH_VOLUME_DOWN = "BLUETOOTH_VOLUME_DOWN";
 
     void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
                                 int appWidgetId) {
@@ -39,18 +57,40 @@ public class AudioWidget extends AppWidgetProvider {
         int maxMusicVolume = audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
 
         views.setProgressBar(R.id.music_progress_bar, maxMusicVolume, musicVolume, false);
-
         views.setOnClickPendingIntent(R.id.plus_music, getPendingSelfIntent(context, MUSIC_VOLUME_UP));
         views.setOnClickPendingIntent(R.id.minus_music, getPendingSelfIntent(context, MUSIC_VOLUME_DOWN));
 
-
-
-        int alarmVolume = audioManager.getStreamVolume(AudioManager.STREAM_ALARM);
-        int notificationVolume = audioManager.getStreamVolume(AudioManager.STREAM_NOTIFICATION);
+        // ring volume
         int ringVolume = audioManager.getStreamVolume(AudioManager.STREAM_RING);
+        int maxRingVolume = audioManager.getStreamMaxVolume(AudioManager.STREAM_RING);
+
+        views.setProgressBar(R.id.ring_progress_bar, maxRingVolume, ringVolume, false);
+        views.setOnClickPendingIntent(R.id.plus_ring, getPendingSelfIntent(context, RING_VOLUME_UP));
+        views.setOnClickPendingIntent(R.id.minus_ring, getPendingSelfIntent(context, RING_VOLUME_DOWN));
+
+        //alarm volume
+        int alarmVolume = audioManager.getStreamVolume(AudioManager.STREAM_ALARM);
+        int maxAlarmVolume = audioManager.getStreamMaxVolume(AudioManager.STREAM_ALARM);
+
+        views.setProgressBar(R.id.alarm_progress_bar, maxAlarmVolume, alarmVolume, false);
+        views.setOnClickPendingIntent(R.id.plus_alarm, getPendingSelfIntent(context, ALARM_VOLUME_UP));
+        views.setOnClickPendingIntent(R.id.minus_alarm, getPendingSelfIntent(context, ALARM_VOLUME_DOWN));
+
+        //Notification Volume
+        int notificationVolume = audioManager.getStreamVolume(AudioManager.STREAM_NOTIFICATION);
+        int maxNotificationVolume = audioManager.getStreamMaxVolume(AudioManager.STREAM_NOTIFICATION);
+
+        views.setProgressBar(R.id.notification_progress_bar, maxNotificationVolume, notificationVolume, false);
+        views.setOnClickPendingIntent(R.id.plus_notification, getPendingSelfIntent(context, NOTIFICATION_VOLUME_UP));
+        views.setOnClickPendingIntent(R.id.minus_notification, getPendingSelfIntent(context, NOTIFICATION_VOLUME_DOWN));
 
         //bluetooth
         int bluetoothVolume = audioManager.getStreamVolume(6);
+        int maxBluetoothVolume = audioManager.getStreamMaxVolume(6);
+
+        views.setProgressBar(R.id.bluetooth_progress_bar, maxBluetoothVolume, bluetoothVolume, false);
+        views.setOnClickPendingIntent(R.id.plus_bluetooth, getPendingSelfIntent(context, NOTIFICATION_VOLUME_UP));
+        views.setOnClickPendingIntent(R.id.minus_bluetooth, getPendingSelfIntent(context, NOTIFICATION_VOLUME_DOWN));
     }
 
     @Override
@@ -70,31 +110,54 @@ public class AudioWidget extends AppWidgetProvider {
 
         switch (intent.getAction()) {
             case REFRESH_CLICK_ACTION:
-                sendUpdate(context);
                 break;
             case MUSIC_VOLUME_UP:
                 setStreamVolumeUp(context, AudioManager.STREAM_MUSIC);
-                sendUpdate(context);
                 break;
             case MUSIC_VOLUME_DOWN:
                 setStreamVolumeDown(context, AudioManager.STREAM_MUSIC);
-                sendUpdate(context);
+                break;
+            case RING_VOLUME_UP:
+                setStreamVolumeUp(context, AudioManager.STREAM_RING);
+                break;
+            case RING_VOLUME_DOWN:
+                setStreamVolumeDown(context, AudioManager.STREAM_RING);
+                break;
+            case ALARM_VOLUME_UP:
+                setStreamVolumeUp(context, AudioManager.STREAM_ALARM);
+                break;
+            case ALARM_VOLUME_DOWN:
+                setStreamVolumeDown(context, AudioManager.STREAM_ALARM);
+                break;
+            case NOTIFICATION_VOLUME_UP:
+                setStreamVolumeUp(context, AudioManager.STREAM_NOTIFICATION);
+                break;
+            case NOTIFICATION_VOLUME_DOWN:
+                setStreamVolumeDown(context, AudioManager.STREAM_NOTIFICATION);
+                break;
+            case BLUETOOTH_VOLUME_UP:
+                setStreamVolumeUp(context, 6);
+                break;
+            case BLUETOOTH_VOLUME_DOWN:
+                setStreamVolumeDown(context, 6);
                 break;
             default:
                 super.onReceive(context, intent);
                 break;
         }
+
+        sendUpdate(context);
     }
 
     private void setStreamVolumeUp(Context context, int stream){
      AudioManager audioManager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
-     int musicVolume = audioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
-     int maxMusicVolume = audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
+     int streamVolume = audioManager.getStreamVolume(stream);
+     int maxStreamVolume = audioManager.getStreamMaxVolume(stream);
 
-     int volumeNeedToBeSet = musicVolume + 2;
+     int volumeNeedToBeSet = streamVolume + 2;
 
-     if (volumeNeedToBeSet > maxMusicVolume){
-         volumeNeedToBeSet = maxMusicVolume;
+     if (volumeNeedToBeSet > maxStreamVolume){
+         volumeNeedToBeSet = maxStreamVolume;
      }
 
      audioManager.setStreamVolume(stream, volumeNeedToBeSet, 0);
@@ -102,13 +165,13 @@ public class AudioWidget extends AppWidgetProvider {
 
     private void setStreamVolumeDown(Context context, int stream){
         AudioManager audioManager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
-        int musicVolume = audioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
-        int minMusicVolume = audioManager.getStreamMinVolume(AudioManager.STREAM_MUSIC);
+        int streamVolume = audioManager.getStreamVolume(stream);
+        int minStreamVolume = audioManager.getStreamMinVolume(stream);
 
-        int volumeNeedToBeSet = musicVolume - 2;
+        int volumeNeedToBeSet = streamVolume - 2;
 
         if (volumeNeedToBeSet < 0){
-            volumeNeedToBeSet = minMusicVolume;
+            volumeNeedToBeSet = minStreamVolume;
         }
 
         audioManager.setStreamVolume(stream, volumeNeedToBeSet, 0);

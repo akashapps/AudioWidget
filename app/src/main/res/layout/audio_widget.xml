@@ -5,6 +5,7 @@
     android:padding="@dimen/widget_margin">
 
     <LinearLayout
+        android:id="@+id/layout_music"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
@@ -57,6 +58,225 @@
 
     </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/layout_ring"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="5dp"
+        android:layout_below="@+id/layout_music">
+
+        <TextView
+            android:id="@+id/plus_ring"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:gravity="center_vertical"
+            android:textSize="30sp"
+            android:text="+"
+            android:textColor="#FFFFFF"/>
+
+        <TextView
+            android:id="@+id/minus_ring"
+            android:gravity="center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:textSize="30sp"
+            android:text="-"
+            android:textColor="#FFFFFF"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="RingTone"
+                android:textSize="15sp"
+                android:textColor="#FFFFFF" />
+
+            <ProgressBar
+                android:id="@+id/ring_progress_bar"
+                style="@style/Base.Widget.AppCompat.ProgressBar.Horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:min="0" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layout_alarm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="5dp"
+        android:layout_below="@+id/layout_ring">
+
+        <TextView
+            android:id="@+id/plus_alarm"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:gravity="center_vertical"
+            android:textSize="30sp"
+            android:text="+"
+            android:textColor="#FFFFFF"/>
+
+        <TextView
+            android:id="@+id/minus_alarm"
+            android:gravity="center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:textSize="30sp"
+            android:text="-"
+            android:textColor="#FFFFFF"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Alarm"
+                android:textSize="15sp"
+                android:textColor="#FFFFFF" />
+
+            <ProgressBar
+                android:id="@+id/alarm_progress_bar"
+                style="@style/Base.Widget.AppCompat.ProgressBar.Horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:min="0" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layout_notification"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="5dp"
+        android:layout_below="@+id/layout_alarm">
+
+        <TextView
+            android:id="@+id/plus_notification"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:gravity="center_vertical"
+            android:textSize="30sp"
+            android:text="+"
+            android:textColor="#FFFFFF"/>
+
+        <TextView
+            android:id="@+id/minus_notification"
+            android:gravity="center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:textSize="30sp"
+            android:text="-"
+            android:textColor="#FFFFFF"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Notification Sound"
+                android:textSize="15sp"
+                android:textColor="#FFFFFF" />
+
+            <ProgressBar
+                android:id="@+id/notification_progress_bar"
+                style="@style/Base.Widget.AppCompat.ProgressBar.Horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:min="0" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layout_bluetooth"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="5dp"
+        android:layout_below="@id/layout_notification">
+
+        <TextView
+            android:id="@+id/plus_bluetooth"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:gravity="center_vertical"
+            android:textSize="30sp"
+            android:text="+"
+            android:textColor="#FFFFFF"/>
+
+        <TextView
+            android:id="@+id/minus_bluetooth"
+            android:gravity="center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:textSize="30sp"
+            android:text="-"
+            android:textColor="#FFFFFF"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Bluetooth"
+                android:textSize="15sp"
+                android:textColor="#FFFFFF" />
+
+            <ProgressBar
+                android:id="@+id/bluetooth_progress_bar"
+                style="@style/Base.Widget.AppCompat.ProgressBar.Horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:min="0" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
     <ImageView
         android:id="@+id/refresh"
         android:layout_width="wrap_content"
@@ -68,6 +288,7 @@
         android:layout_marginRight="5dp"
         android:layout_marginBottom="5dp"
         android:src="@android:drawable/ic_menu_rotate"
-        android:tint="@android:color/holo_red_dark" />
+        android:tint="@android:color/holo_red_dark"
+        android:layout_below="@+id/layout_bluetooth"/>
 
 </RelativeLayout>
