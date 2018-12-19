@@ -89,8 +89,8 @@ public class AudioWidget extends AppWidgetProvider {
         int maxBluetoothVolume = audioManager.getStreamMaxVolume(6);
 
         views.setProgressBar(R.id.bluetooth_progress_bar, maxBluetoothVolume, bluetoothVolume, false);
-        views.setOnClickPendingIntent(R.id.plus_bluetooth, getPendingSelfIntent(context, NOTIFICATION_VOLUME_UP));
-        views.setOnClickPendingIntent(R.id.minus_bluetooth, getPendingSelfIntent(context, NOTIFICATION_VOLUME_DOWN));
+        views.setOnClickPendingIntent(R.id.plus_bluetooth, getPendingSelfIntent(context, BLUETOOTH_VOLUME_UP));
+        views.setOnClickPendingIntent(R.id.minus_bluetooth, getPendingSelfIntent(context, BLUETOOTH_VOLUME_DOWN));
     }
 
     @Override
