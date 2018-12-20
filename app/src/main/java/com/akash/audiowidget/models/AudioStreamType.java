@@ -3,8 +3,6 @@ package com.akash.audiowidget.models;
 import android.content.Context;
 import android.media.AudioManager;
 
-import com.akash.audiowidget.WidgetRemoveViewFactory;
-
 public enum AudioStreamType {
     RING(2, "RING", "RING_VOLUME_UP", "RING_VOLUME_DOWN"),
     MUSIC(3, "MUSIC", "MUSIC_VOLUME_UP", "MUSIC_VOLUME_DOWN"),

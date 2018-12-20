@@ -1,13 +1,11 @@
 package com.akash.audiowidget.views;
 
-import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.media.AudioManager;
 import android.os.Bundle;
 import android.widget.RemoteViews;
 
-import com.akash.audiowidget.AudioWidget;
 import com.akash.audiowidget.R;
 import com.akash.audiowidget.models.AudioStreamType;
 
