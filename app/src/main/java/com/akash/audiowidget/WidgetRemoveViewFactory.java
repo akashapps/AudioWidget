@@ -66,7 +66,7 @@ public class WidgetRemoveViewFactory implements RemoteViewsService.RemoteViewsFa
         AudioStreamType type = itemList.get(position);
 
         VolumeControllerRemoteViews remoteViews = new VolumeControllerRemoteViews(context);
-        remoteViews.setupView(context, type, audioManager);
+        remoteViews.setupView(type, audioManager);
 
         return remoteViews;
     }

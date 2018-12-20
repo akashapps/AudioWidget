@@ -23,8 +23,7 @@ public class VolumeControllerRemoteViews extends RemoteViews {
         super(packageName, layoutId);
     }
 
-    public void setupView(Context context, AudioStreamType type, AudioManager audioManager) {
-
+    public void setupView(AudioStreamType type, AudioManager audioManager) {
         setTextViewText(R.id.title, type.title);
         setProgressBar(R.id.progress_bar, type.getMaxVolume(audioManager), type.getVolume(audioManager), false);
 
